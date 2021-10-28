@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: rapport.aux
+The style file: abbrv.bst
+Database file #1: biblio.bib
+Warning--to sort, need author or key in siteImages
+Warning--to sort, need author or key in siteMathCurve
+Warning--to sort, need author or key in siteImagesSavon
+Warning--to sort, need author or key in siteCatenoide
+Warning--to sort, need author or key in siteSurfRev
+Warning--to sort, need author or key in siteSurfMin
+Warning--to sort, need author or key in siteEnnep
+Warning--to sort, need author or key in sitePbPlateau
+Warning--empty publisher in gray
+Warning--empty journal in pinkall
+Warning--empty journal in weber
+You've used 11 entries,
+            2118 wiz_defined-function locations,
+            534 strings with 4615 characters,
+and the built_in function-call counts, 1868 in all, are:
+= -- 155
+> -- 35
+< -- 0
++ -- 19
+- -- 8
+* -- 76
+:= -- 242
+add.period$ -- 17
+call.type$ -- 11
+change.case$ -- 36
+chr.to.int$ -- 0
+cite$ -- 22
+duplicate$ -- 88
+empty$ -- 241
+format.name$ -- 8
+if$ -- 429
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 4
+newline$ -- 42
+num.names$ -- 6
+pop$ -- 86
+preamble$ -- 1
+purify$ -- 26
+quote$ -- 0
+skip$ -- 100
+stack$ -- 0
+substring$ -- 55
+swap$ -- 9
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 11
+while$ -- 6
+width$ -- 13
+write$ -- 69
+(There were 11 warnings)

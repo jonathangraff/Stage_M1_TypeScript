@@ -1,0 +1,1047 @@
+\documentclass {report}
+\addtolength{\textwidth}{2 cm}
+\addtolength{\textheight}{3 cm}
+\usepackage[latin1]{inputenc}
+%\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs}
+\usepackage{bm}
+\usepackage{color, xcolor,epic,eepic,multicol,graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{pstricks, pstricks-add}
+\usepackage[all]{xy}
+\usepackage[french]{babel}
+\usepackage{ulem, listings, ccaption}
+\usepackage[framed,amsmath,thmmarks]{ntheorem}
+\usepackage{pgfgantt}
+\theoremheaderfont{\upshape \bfseries}
+\theoremseparator{:} 
+
+\newcommand{\prodscal}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\gs}[1]{\textbf{\underline{#1}}}
+
+\newtheorem{defi}{Définition}[section]
+\newcommand{\defin}[1]{\begin{defi}#1\end{defi}\vspace{0.3cm}}
+\newcommand{\defibox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{defi}#1\end{defi}\end{minipage}}\vspace{0.3cm}}
+\renewcommand{\thedefi}{\empty{}} 
+
+\newtheorem{defis}{Définitions}[section]
+\newcommand{\defins}[1]{\begin{defis}#1\end{defis}\vspace{0.3cm}}
+\newcommand{\defisbox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{defis}
+#1\end{defis}\end{minipage}}\vspace{0.3cm}}
+\renewcommand{\thedefis}{\empty{}} 
+
+\newtheorem{theo}{Théorème}[section]
+\newcommand{\theor}[1]{\begin{theo}#1\end{theo}\vspace{0.3cm}}
+\newcommand{\theobox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{theo}
+#1\end{theo}\end{minipage}}\vspace{0.3cm}}
+
+\newtheorem{propr}[theo]{Propriété}
+\newcommand{\propri}[1]{\begin{propr}#1\end{propr}\vspace{0.3cm}}
+\newcommand{\proprbox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{propr}
+#1\end{propr}\end{minipage}}\vspace{0.3cm}}
+
+\newtheorem{proprs}[theo]{Propriétés}
+\newcommand{\propris}[1]{\begin{proprs}#1\end{proprs}\vspace{0.3cm}}
+\newcommand{\proprsbox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{proprs}
+#1\end{proprs}\end{minipage}}\vspace{0.3cm}}
+
+\newtheorem{propo}[theo]{Proposition}
+\newcommand{\propos}[1]{\begin{propo}#1\end{propo}\vspace{0.3cm}}
+\newcommand{\propobox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{propo}
+#1\end{propo}\end{minipage}}\vspace{0.3cm}}
+
+\newtheorem{lemm}[theo]{Lemme}
+\newcommand{\lemme}[1]{\begin{lemm}#1\end{lemm}\vspace{0.3cm}}
+\newcommand{\lemmbox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{lemm}
+#1\end{lemm}\end{minipage}}\vspace{0.3cm}} 
+
+\newtheorem{corr}[theo]{Corollaire}
+\newcommand{\corro}[1]{\begin{corr}#1\end{corr}\vspace{0.3cm}}
+\newcommand{\corrbox}[1]{\hspace{-0.7cm}\fbox{\begin{minipage}{14cm}\begin{corr}
+#1\end{corr}\end{minipage}}\vspace{0.3cm}}
+\everymath{\displaystyle}
+\newtheorem{affi}{Affirmation}
+\newtheorem{rema}{Remarque}
+
+\newrgbcolor{fftttt}{1 0.2 0.2}
+\newrgbcolor{ttffqq}{0.2 1 0}
+\psset{xunit=9.62cm,yunit=2.27cm,algebraic=true,dotstyle=o,dotsize=3pt 0,linewidth=0.8pt,arrowsize=3pt 2,arrowinset=0.25}
+\renewcommand{\contentsname}{Sommaire}
+%\setlength{\unitlength}{1cm}
+\graphicspath{Images_Fichiers}
+\setlength{\parskip}{.3cm}
+\everymath{\displaystyle}
+\lstset{language=C++,
+                basicstyle=\ttfamily,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#}
+}
+\begin{document}
+\baselineskip=0.5cm
+\huge{DAHIK Shifaa - GRAFF Jonathan}
+\vspace{5cm}
+\begin{center}
+\Huge{\bf  Projet : \\ \  \\Les Cartes combinatoires}
+\end{center}
+\vspace{8cm}
+\hspace{10.5cm}\Large{Master 1 CSMI \vspace{1cm}\\ \hspace*{5cm}Année universitaire 2016-2017 - Semestre 2}\normalsize
+\tableofcontents
+\newpage
+
+\chapter[Introduction]{\uline{Introduction}}
+
+Les cartes combinatoires servent à modéliser différents objets géométriques de toute dimension, en se basant uniquement sur la topologie de ces objets. \\
+On ne se préoccupera donc pas ici des propriétés géométriques de l'objet (coordonnées des points, longueur des arêtes,\ \dots). 
+
+Nous allons voir dans la suite deux différentes modélisations : 
+\begin{itemize}
+\item[$\bullet$] d'abord les cartes combinatoires généralisées de dimension $n$, aussi appelées $n$-cartes combinatoires généralisées, notées dans la suite de cet exposé $n$-CCG
+\item[$\bullet$] ensuite les cartes combinatoires de dimension $n$, aussi appelées $n$-cartes combinatoires, notées dans la suite de cet exposé $n$-CC.\vspace{0.3cm}
+\end{itemize} 
+
+
+Nous donnerons pour chaque modélisation des exemples, puis une définition mathématique, et enfin nous verrons comment retrouver des objets tels que les sommets, les arêtes, les faces, les volumes\dots \ à partir de ces modélisations.\\
+Nous verrons plusieurs algorithmes qui permettront de modifier ces cartes combinatoires. \\
+Et enfin, nous verrons quelles sont les avantages et les inconvénients de ces cartes combinatoires.
+
+\chapter[Les $n$-cartes combinatoires généralisées ($n$-CCG)]{\uline{Les $n$-cartes combinatoires généralisées ($n$-CCG)}}
+
+Les cartes combinatoires vont nous permettre de modéliser certains objets de façon mathématique pour les implémenter ensuite informatiquement. \\
+Premièrement, nous devons définir quels objets nous allons exactement être capable de modéliser avec ces outils. Il s'agit des \gs{quasi-variétés}, c'est-à-dire des recollements d'objets de dimension $n$ le long d'objets de dimension $n-1$, et tels que chaque objet de dimension $n-1$ est incident à au plus deux objets de dimension $n$. 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.45]{Images_Fichiers/quasivariete.eps}
+      \legend{Une quasi-variété}
+      \label{QV}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.45]{Images_Fichiers/pseudovariete.eps}
+	 \legend{Une pseudo-variété}
+	 \label{PV}
+   \end{minipage}
+\end{figure}
+
+La première figure représente un regroupement de quatre volumes, qui n'est pas une variété, mais qui est une quasi-variété, et donc peut être représenté par une carte combinatoire. Ce n'est pas une variété, car un voisinage autour du point $S$ n'est pas homéomorphe à une demi-boule ouverte de dimension 3.
+
+La deuxième figure représente un volume qui ne peut pas être représenté par une carte combinatoire pour plusieurs raisons : \\
+$\bullet$ Les volumes 2 et 3 se recoupent sur une arête.\\
+$\bullet$ Les volumes 1 et 3 se recoupent sur le point S.\\
+$\bullet$ Les volumes 1 et 2 ne se recoupent pas entièrement sur la face supérieure du volume 1.
+
+Les cartes combinatoires généralisées peuvent représenter des surfaces orientables et non orientables, avec ou sans bord ce que nous verrons dans la suite.
+
+\section[Exemples]{\uline{Exemples}}
+
+L'objet de base de cette modélisation est la demi-arête. En 1D, chaque arête sera divisée en deux demi-arêtes, en 2D, chaque arête sera divisée en deux (une pour chaque face), puis chacune en deux demi-arêtes etc...
+
+Pour une $n$-CCG, on aura $n+1$ fonctions différentes notées $\alpha_0, \cdots, \alpha_n$ qui vont chacune représenter les liens de chaque demi-arête avec les autres en dimension $i$. Voici des exemples de cartes combinatoires de différentes dimensions :
+
+\textbf{Dimension 1} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/1CCG.eps}
+      \legend{1-Carte Combinatoire Généralisée}
+      \label{1CCG}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.5]{Images_Fichiers/1CCGGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{1CCGGraphe}
+   \end{minipage}
+\end{figure}
+
+
+Ici, la fonction $\alpha_0$ envoie la demi-arête 1 sur le 2, 3 sur 4, 5 sur 6, 7 sur 8 et 9 sur 10, et réciproquement. \\
+La fonction $\alpha_1$ lie 1 et 10, 2 et 3, 4 et 5, 6 et 7, 8 et 9.\\
+Cette carte combinatoire représente la courbe polygonale de droite, où les $v_i$ sont les sommets et $e_i$ les arêtes.
+
+Si l'arête $e_5$ par exemple n'existait pas, alors la figure aurait un bord et les demi-arêtes 9 et 10 n'existeraient pas. L'image par $\alpha_1$ de 1 et 8 aurait alors été eux-mêmes.\\
+Les fonctions $\alpha_i$ sont donc des involutions.
+
+\textbf{Dimension 2} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/2CCG.eps}
+      \legend{2-Carte Combinatoire Généralisée}
+      \label{2CCG}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.5]{Images_Fichiers/2CCGGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{2CCGGraphe}
+   \end{minipage}
+\end{figure}
+Ici, les fonctions $\alpha_0$ et $\alpha_1$ fonctionnent comme tout à l'heure, et la fonction $\alpha_2$ lie les demi-arêtes qui appartiennent à des faces différentes : 1 est envoyé sur 19, 2 sur 20, 3 sur 10, 4 sur 9, 11 sur 21, 12 sur 22, et vice-versa. \\
+Les autres demi-arêtes sont sur des bords des surfaces, donc leur image par $\alpha_2$ est eux-mêmes. Il n'y a pas de demi-arête avec un $1$-bord. 
+
+Cette carte combinatoire représente la surface de droite, où il y a sept sommets, neuf arêtes et trois faces. \\
+Le sommet $v_1$ est représenté par l'ensemble des brins $\{2,3,10,11,20,21\}$, l'arête $e_1$ par $\{3,4,9,10\}$ et la face $f_2$ par $\{1,2,3,4,5,6,7,8\}$.
+
+Pour finir, voici un exemple de 2-CCG représentant une surface non orientable : 
+\begin{figure}[h!]
+      \centering 
+      \legend{Ruban de Möbius en 2-CCG}
+      \includegraphics[scale=0.5]{Images_Fichiers/2CCGMobius.eps}
+      \label{2CCGM}
+\end{figure}
+
+\textbf{Dimension 3} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.7]{Images_Fichiers/3CCG.eps}
+      \legend{3-Carte Combinatoire Généralisée}
+      \label{3CCG}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.63]{Images_Fichiers/3CCGGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{3CCGGraphe}
+   \end{minipage}
+\end{figure}
+
+$\alpha_0$, $\alpha_1$, et $\alpha_2$ fonctionnent comme auparavant et $\alpha_3$ lie les demi-arêtes comme indiqué sur la figure de gauche, c'est-à-dire les demi-arêtes des faces qui doivent être "cousues" ensemble. \\
+On a ici deux volumes, représentés par l'ensemble des demi-arêtes qui le composent.
+
+\section[Définition]{\uline{Définition}}
+
+\defibox{Une $n$-carte combinatoire généralisée est un $(n+2)$-uplet $(D, \alpha_0,\cdots, \alpha_n)$ où :
+
+\begin{enumerate}
+
+\item $D$ est un ensemble fini : les demi-arêtes.
+\item Pour tout $i\in \{0,\cdots,n\},\ \alpha_i$ est une involution sur $D$.
+\item Pour tout $i\in \{0,\cdots,n-2\}$ et pour tout $j\in \{i+2,\cdots,n\}$, $\alpha_i \circ \alpha_j$ est une involution.
+\end{enumerate}}
+
+\underline{Explication} : 
+
+Les fonctions $\alpha_i$, comme vu précédemment, indiquent les relations de dimension $i$ entre les différentes demi-arêtes.
+Une 0-CCG sera donc un ensemble de sommets ou de paires de sommets isolés (si deux demi-arêtes sont reliées par $\alpha_0$, on a une paire de sommets), une 1-CCG sera une courbe polygonale, 
+une 2-CCG un regroupement de surfaces, et une 3-CC sera un regroupement de volumes.
+
+La dernière condition sert à vérifier que la figure est correctement construite, que les arêtes et les faces se recollent bien par exemple.
+
+\section[Orbites - Cellules]{\uline{Orbites - Cellules}}
+
+\defibox{Soit $I$ un sous-ensemble de $\{0,\cdots,n\}$, et $d\in D$ une demi-arête.\\
+On note $\alpha_I = \{\alpha_i,\ i\in I\}$. On appelle \gs{orbite de $\bm{d}$} dans $\alpha_I$ l'ensemble noté $\langle \alpha_I \rangle (d)$ tel que 
+$$\langle \alpha_I \rangle (d)=\{d'\in D \text{ tel qu'il existe des entiers } (i_1,\cdots, i_k)\text{ de } I \text{ tel que }\alpha_{i_1}\circ \cdots \circ \alpha_{i_k}(d)= d'  \}.$$ }
+
+Intuitivement, il s'agit de toutes les demi-arêtes pouvant être atteints à partir de $d$ en utilisant les fonctions présentes dans $\alpha_I$.
+
+\defins{\ \\
+$\bullet$ Une $n$-CCG $M=(D, \alpha_0,\cdots, \alpha_n)$ est dite \gs{connexe} si pour $d\in D, $ $$\ \langle (\alpha_0,\cdots,\alpha_n) \rangle (d) = D.$$
+$\bullet$ Pour $d\in D$, l'ensemble $\ \langle (\alpha_1,\cdots,\alpha_n) \rangle (d)$ est la \gs{composante connexe contenant $\bm{d}$}.
+}
+
+\defibox{Soit $d \in D$, une \underline{$\bm{i}$\textbf{-cellule}} contenant $d$, notée $c_i(d)$ est $$c_i(d)=\langle (\alpha_1\cdots\alpha_{i-1},\alpha_{i+1},\cdots\alpha_n) \rangle (d)$$}
+
+
+Intuitivement, une $i$-cellule contenant $d$ est l'objet de dimension $i$ contenant la demi-arête $d$. Une 0-cellule est donc un point, une 1-cellule une arête, une 2-cellule une face, une 3-cellule un volume...
+
+
+Il suffit donc de regarder les orbites des différentes fonctions pour déterminer les composantes de la figure de départ. Une demi-arête appartient en même temps à un sommet, une arête, une face, un volume...
+On voit que cela ne pose pas de problèmes de travailler en dimension supérieure à 3 car ces définitions sont valables en toute dimension. Il suffit donc de rajouter une fonction $\alpha_i$ pour augmenter la dimension de 1.
+
+\defins{\ \\
+$\bullet$ Deux cellules sont dites \gs{incidentes} si elle possèdent au moins une demi-arête en commun.\\
+$\bullet$ Deux $i$-cellules distinctes $C$ et $C'$ sont dites \gs{adjacentes} ssi il existe deux demi-arêtes $d$ de $C$ et $d'$ de $C'$ tels que 
+$$d'=\alpha_i(d)\text{ ou } d=\alpha_i(d')$$}
+\newpage
+\section[Opérations de base]{\uline{Opérations de base}}
+
+Dans toute la suite, $M=(D, \alpha_0,\cdots, \alpha_n)$ représente une $n$-CCG avec $D$ l'ensemble des demi-arêtes.
+
+\subsection{Brin isolé}
+
+\defibox{Une demi-arête $d$ est dit isolé si $\forall j\in\{0,\cdots,n\}, \ \alpha_j(d)=d$.}
+
+On peut créer une $n$-CCG notée $M_{+d}$ en rajoutant une demi-arête isolée $d$ comme suit : 
+$$M_{+d} = (D\cup\{d\}, \alpha'_0,\cdots,\alpha'_n)\text{, avec }{\alpha'_i}_{|D}= \alpha_i \text{ et }\alpha'_i(d)=d, \ \forall i\in\{0,\cdots,n\}.$$ 
+
+On peut créer une $n$-CCG notée $M_{-d}$ en enlevant une demi-arête isolée $d$ comme suit : 
+$$M_{-d} = (D-\{d\}, \alpha'_0,\cdots,\alpha'_n)\text{, avec }\alpha'_i = {\alpha'_i}_{|D-\{d\}}, \ \forall i\in\{0,\cdots,n\}.$$
+
+\subsection{Fusion - séparation}
+
+Soit $M'=(D',\alpha'_0,\cdots,\alpha'_n) $ une deuxième $n$-CCG. Alors on peut fusionner $M$ et $M'$ en une $n$-CCG $M''=(D'',\alpha''_0,\cdots,\alpha''_n) $ telle que : 
+\begin{itemize}
+\item $D''=D\cup D'$.
+\item $\forall i \in\{0,\cdots,n\}, {\alpha''_i}_{|D}=\alpha_i$ et ${\alpha''_i}_{|D'}=\alpha'_i$.\vspace{0.3cm}
+\end{itemize}
+
+On peut également séparer une $n$-CCG en deux selon les composantes connexes : 
+
+Soit $D'\subset D'$ tel que $\forall d \in D', \ \alpha_i(d)\in D'$ (les demi-arêtes de $D'$ doivent être l'ensemble d'une ou plusieurs composante(s) connexe(s)).
+Alors on peut séparer $M$ en \\
+$M'=(D',{\alpha_0}_{|D'},\cdots,{\alpha_n}_{|D'})$ et $M''=(D-D',{\alpha_0}_{|D-D'},\cdots,{\alpha_n}_{|D-D'})$.
+
+\subsection{Un peu de couture...}
+
+On va voir dans cette section comment "coudre" des $i$-cellules ensemble. La première chose à remarquer est que ces cellules doivent être isomorphes. En effet, pour un volume on ne va par exemple pas essayer de coudre ensemble une face triangulaire et une face carrée. 
+
+Pour $i\in \{0,\cdots,n\}$, on note $O_d=\langle \alpha_0,\cdots,\alpha_{i-2},\alpha_{i+2},\cdots, \alpha_{n}\rangle(d)$. 
+
+\defibox{Soient deux demi-arêtes distinctes $d$ et $d'$ de $D$. $d$ est \gs{$i$-cousible à $d'$} si $\alpha_i(d)=d$ et $\alpha_i(d')=d'$ et s'il existe un isomorphisme $f$ entre $O_d$ et $O_{d'}$ tel que $f(d)=d'$.}
+
+La première condition implique que les deux demi-arêtes sont sans $i$-bords.\\
+La deuxième condition vérifie que les deux $i$-cellules sont bien isomorphes et assure que la condition 3 de la définition d'une $n$-CCG reste bien vérifiée.  
+
+On peut maintenant coudre deux parties d'une $n$-CCG comme suit (on ne s'intéressera qu'aux coutures de dimension supérieure à 2, pour 1, c'est similaire) : 
+
+Soient $d$ et $d'$ deux demi-arêtes $i$-cousibles par un isomorphisme $f$, pour $i\in \{2,\cdots,n\}$. Alors en cousant ces deux demi-arêtes, on obtient la $n$-CCG $M'$ avec \\
+$M'=(D, \alpha_0,\cdots,\alpha_{i-1},\alpha'_i,\alpha_{i+1},\cdots, \alpha_n)$ avec 
+$\alpha'_i(e) = \left\{\begin{array}{ll}
+f(e) & \text{si }e\in O_d\\
+f^{-1}(e)& \text{si }e\in O_d' \text{ et }O_d \neq O_{d'}\\
+\alpha_i(e) & \text{sinon.}\\
+\end{array}\right.$
+
+\subsection{Pour en découdre...}
+
+Pour finir, on peut découdre une demi-arête. Cette fois-ci, il n'y a pas de condition à vérifier, on peut toujours le faire si cette demi-arête n'est pas déjà $i$-libre :
+
+Soit $i\in \{0,\cdots,n\}$ et $d$ une demi-arête non $i$-libre. Alors en décousant cette demi-arête, on obtient la $n$-CCG $M'=(D, \alpha_0,\cdots,\alpha_{i-1},\alpha'_i,\alpha_{i+1},\cdots, \alpha_n)$ avec 
+$$\alpha'_i(e) = \left\{\begin{array}{ll}
+e & \text{si }e\in \langle \alpha_0,\cdots,\alpha_{i-2},\alpha_i,\alpha_{i+2},\cdots, \alpha_{n}\rangle(d)\\
+\alpha_i(e) & \text{sinon.}\\
+\end{array}\right.$$
+
+Cela consiste à envoyer toute demi-arête de $\langle \alpha_0,\cdots,\alpha_{i-2},\alpha_i,\alpha_{i+2},\cdots, \alpha_{n}\rangle(d)$ sur elle-même, donc de lui mettre un $i$-bord. Donc toutes les demi-arêtes de cette orbite seront décousues.\\
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/3CCG.eps}
+\end{figure}
+
+En 3D, si chaque cube ici est une carte combinatoire, alors la couture de ces deux cartes consistera à rajouter la fonction $\alpha_3$ pour lier les faces. Une fois cousues, ces faces peuvent être décousues pour redonner les deux cartes combinatoires de départ. Chacune des deux faces aura un 3-bord.
+
+\section[Opérations plus complexes]{\uline{Opérations plus complexes}}
+
+\subsection{Fermeture}
+
+Cette opération permettra de supprimer tous les bords de notre figure, en remplissant tous les $i$-bords. Intuitivement, 
+
+On définit d'abord la carte des $i$-bords : \newpage
+
+\defin{Pour $M=(D, \alpha_0, \cdots, \alpha_n)$ une $n$-CGG, on définit la $n$-CGG des $i$-bords notée $M_{\partial_i}$, avec $M_{\partial_i}=(D', \alpha'_0, \cdots, \alpha'_n)$ de la façon suivante : \\
+$\begin{array}{l}
+\bullet\ D'\text{ est l'ensemble des demi-arêtes }i\text{-libres.}\\
+\bullet\ \forall d\in D', \ \alpha'_j(d)=
+\end{array}$
+$$\left\{\begin{array}{l}
+\alpha_j(d) \hspace*{.18cm}\text{ si }j\in\{0,\cdots, i-2, i, i+2,\cdots,n\}\\
+d\hspace*{.8cm}\text{ si }j=i+1\\
+\alpha_{i-1}\circ(\alpha_i\circ\alpha_{i-1})^k(d) \text{ où }k\text{ est le plus petit entier tel que } \alpha_{i-1}\circ(\alpha_i\circ\alpha_{i-1})^k(d)\text{ soit }i\text{-libre}\text{ sinon.}\\
+\end{array}\right.$$}
+
+La première condition nous dit que les liaisons de dimension strictement inférieures à $i-1$ et strictement supérieures à $i+1$ restent inchangées, les demi-arêtes restent des bords en dimension $i$ et $i+1$.\\
+La troisième condition, cherche un lien à créer de dimension $i-1$ en parcourant la cellule de dimension $i$ jusqu'à trouver une demi-arête $i$-libre. 
+
+Voici quelques exemples qui aideront à mieux comprendre : 
+
+\begin{figure}[h!]
+      \centering \includegraphics[scale=0.4]{Images_Fichiers/Boundary2CCG.eps}
+      \legend{Voici une 2-CCG avec des 1-bords et 2-bords}
+      \label{Bound2CCG}
+\end{figure}
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/1-Boundary2CCG.eps}
+	 \legend{La carte des 1-bords}
+	 \label{1-Bound}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/2-Boundary2CCG.eps}
+	 \legend{La carte des 2-bords}
+	 \label{2-Bound}
+   \end{minipage}
+\end{figure}
+
+\begin{figure}[h!]
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/Boundary3CCG.eps}
+      \legend{Une 3-CCG et la carte des 3-bords correspondante}
+      \label{Bound3CCG}
+\end{figure}
+
+\defibox{Soit $M$ une $n$-CCG, $i\in\{0,\cdots,n\}$ et $M_{\partial_i}=(D', \alpha'_0, \cdots, \alpha'_n)$ la carte des $i$-bords. La $i$-fermeture de $M$ est la carte, notée $M_{i-ferm}=(D'',\alpha''_0, \cdots, \alpha''_n)$ définie par : 
+\begin{enumerate}
+\item $D''=D\cup\{d''_1,\cdots,d''_{|D'|}\}$ où $\{d''_1,\cdots,d''_{|D'|}\}$ est un ensemble de nouvelles demi-arêtes telle qu'une bijection $f$ envoie $D'$ sur $\{d''_1,\cdots,d''_{|D'|}\}$.
+\item $\forall j\in \{0,\cdots,n\}$ avec $j\neq i$ : \\
+$\bullet\ \forall d\in D, \alpha''_j(d)=\alpha_j(d)$\\
+$\bullet\ \forall d'\in D', \alpha''_j(f(d'))=f(\alpha'_j(d')$
+\item $\forall d\in D-D', \alpha''_i(d)=\alpha_i(d)$
+\item $\forall d\in D', \alpha''_i(d)=f(d)$ et $\alpha''_i(f(d))=d$
+\end{enumerate}}
+
+On peut considérer n'importe quelle bijection $f$, l'ordre des demi-arêtes n'a pas d'importance.
+
+Voici quelques exemples de fermeture :
+\begin{figure}[h!]
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/1-fermeture1CCG.eps}
+      \legend{Une 1-CCG et sa 1-fermeture}
+      \label{1-Close}
+\end{figure}
+\begin{figure}[h!]
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/2-fermeture2CCG.eps}
+      \legend{Une 2-CCG et sa 2-fermeture}
+      \label{2-Close}
+\end{figure}
+
+Dans le deuxième exemple, on voit que pour une figure en 2 dimensions avec des bords, il suffit de rajouter une surface autour, on peut voir ça comme rajouter la "surface extérieure" comme étant une face supplémentaire.
+
+\subsection{Suppression}
+
+On va voir dans cette section comment supprimer une cellule entière de dimension $i$. Tout d'abord, on ne va pas supprimer une cellule de dimension $n$, et toute cellule ne pourra pas être supprimée : 
+
+\begin{figure}[h!]
+      \centering \includegraphics[scale=0.6]{Images_Fichiers/remove.eps}
+      \legend{Une 2-CC où on a enlevé les deux arêtes $e_1$ et $e_2$, puis les sommets $v_1$ et $v_2$.}
+      \label{Remove}
+\end{figure}
+\newpage
+Les deux arêtes ont été supprimées en faisant fusionner les deux cellules adjacentes. On peut donc toujours supprimer une cellule de dimension $n-1$ d'après la définition d'une quasi-variété.\\
+On ne peut pas supprimer par exemple ici le sommet $v_3$ car celui-ci est incident à 3 sommets. En règle générale, on ne pourra pas supprimer une $i$-cellule incidente à plus de deux $(i+1)$-cellules.
+
+\defibox{Une $i$-cellule d'une $n$-CCG est dite enlevable ssi $i=n-1$ ou pour $i\in \{0,\cdots,n-2\}$, $\alpha_{i+1}$ et $\alpha_{i+2}$ commutent pour tous les éléments de la cellule. \\
+}
+
+Cette condition permet de vérifier que la $i$-cellule n'est bien incidente qu'à deux $(i+1)$-cellules.
+
+Soit $C$ une $i$-cellule enlevable, et notons $D^S=\alpha_i(C)-C$ l'ensemble des demi-arêtes $i$-liées avec $C$ qui n'appartiennent pas à $C$. La $n$-CCG obtenue en enlevant la $i$-cellule $C$ est notée $G_{R_i}(C)=(D',\alpha'_0, \cdots, \alpha'_n)$ où $D'$ est l'ensemble des demi-arêtes restantes et :
+
+\begin{itemize}
+\item[$\bullet$] $\forall j\in \{0,\cdots,n\}$, avec $j\neq i$, $\alpha'_j={\alpha_j}_{|D'}$
+\item[$\bullet$] $\forall d\in D'-D^S$, $\alpha'_i(d)=\alpha_i(d)$
+\item[$\bullet$] $\forall d\in D^S$, $\alpha'_i(d)=(\alpha_{i}\circ\alpha_{i+1})^k\circ\alpha_{i}(d) \text{ où }k\text{ est le plus petit entier tel que }$\\
+$ (\alpha_{i}\circ\alpha_{i+1})^k\circ\alpha_{i}(d)\in D^S$
+\end{itemize}
+
+La dernière condition sert à chercher avec quelle demi-arête réassocier une demi-arête qui était associé à une des demi-arêtes supprimées.
+
+\subsection{Insertion}
+
+Il existe également l'opération inverse de la suppression d'une $i$-cellule : l'insertion d'une $i$-cellule. \\
+Il y a besoin pour cela d'une $n$-CCG $M$, où on va insérer la $i$-cellule, une autre $n$-CCG $C$ représentant la $i$-cellule à insérer, et une fonction $\gamma$, une bijection entre certaines demi-arêtes de $M$ et certaines de $C$ qui va représenter la façon dont l'insertion est faite.
+
+Nous ne donnerons pas ici la définition, plus techniques que les précédentes, et qui ne traduit que ce qui vient d'être dit ci-dessus, ainsi que les conditions pour que la $n$-CCG soit résultante soit correctement définie. \\
+Voici deux schémas qui expliquent cela : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/insertion1.eps}
+	 \legend{Insertion d'une arête dans une 1-CCG}
+	 \label{Insert1}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/insertion2.eps}
+	 \legend{Insertion d'une arête dans une 2-CCG}
+	 \label{Insert2}
+   \end{minipage}
+\end{figure}
+
+\subsection{Triangulation}
+
+Cette opération consiste en diviser une $i$-cellule en plusieurs triangles en insérant un sommet dans cette cellule.\\
+Une 1-triangulation consiste à diviser une segment en deux en insérant un sommet. Deux nouvelles demi-arêtes sont ainsi créées.\\
+Une 2-triangulation insère un sommet dans une face et relie ce sommet à tous les sommets de la face. \\
+Une 3-triangulation insère un sommet dans un volume et relie ce sommet à tous ceux du volume...
+Voici un exemple de 2-CCG qui est d'abord 1-triangulée, puis 2-triangulée : 
+
+\begin{figure}[h!]
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/12-triangulation.eps}
+	 \legend{Triangulation d'une 2-CCG}
+	 \label{triangulation}
+\end{figure}
+
+Et voici un exemple de 3-CCG qui est 3-triangulée : 
+
+\begin{figure}[h!]
+     \centering \includegraphics[scale=0.4]{Images_Fichiers/3-triangulation.eps}
+	 \legend{Triangulation d'une 3-CCG}
+	 \label{3triangulation}
+\end{figure}
+
+On voit que les nombreux points au milieu font tous partie du même sommet incident à 6 volumes, 12 faces et donc 24 arêtes.
+
+\chapter[Les $n$-cartes combinatoires ($n$-CC)]{\uline{Les $n$-cartes combinatoires ($n$-CC)}}
+
+Nous allons voir maintenant une autre façon de stocker des objets, qui sera de l'ordre de deux fois moins coûteuse en mémoire. L'inconvénient est que cela ne fonctionnera que pour des quasi-variétés orientables, donc par exemple on ne pourra pas modéliser des rubans de Moëbius, des bouteilles de Klein, des plans projectifs... ce qui dans beaucoup d'applications ne posera pas de problèmes.
+
+\section[Exemples]{\uline{Exemples}}
+
+L'objet de base est le brin, qu'on pourra représenter comme un segment fléché. Pour une $n$-CC, on aura $n$ fonctions différentes notées $\beta_i$ qui vont chacune représenter les liens de chaque brin avec les autres en dimension $i$. Voici des exemples de cartes combinatoires de différentes dimensions :
+
+\textbf{Dimension 1} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.68]{Images_Fichiers/1CC.eps}
+      \legend{1-Carte Combinatoire}
+      \label{1CC}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.68]{Images_Fichiers/1CCGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{1CCGraphe}
+   \end{minipage}
+\end{figure}
+
+Ici, la fonction $\beta_1$ envoie 1 sur 2, 2 sur 3, et 3 sur 4. Pour 4, il s'agit d'un bord, donc il n'a pas de brin pour image. Donc pour des raisons pratiques, on notera $\emptyset$ l'image de 4, et on fera de même pour tous les brins appartenant à un bord.\\
+Cette carte combinatoire représente la courbe polygonale orientée de droite, où les $v_i$ sont les sommets et $e_i$ les arêtes.
+
+\newpage
+\textbf{Dimension 2} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/2CC.eps}
+      \legend{2-Carte Combinatoire}
+      \label{2CC}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.5]{Images_Fichiers/2CCGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{2CCGraphe}
+   \end{minipage}
+\end{figure}
+
+Ici, la fonction $\beta_1$ est une permutation ayant trois cycles : $(1,2,3,4)$, $(5,6,7)$, et $(8,9,10,11,12)$. Il n'y a pas de brin avec un $1$-bord. \\
+La permutation $\beta_2$ a trois cycles également : $(1,5)$, $(4,9)$, et $(6,8)$. \\
+Les autres brins, correspondant aux bords de la figure sont envoyés sur $\emptyset$. \\
+Cette carte combinatoire représente la surface de droite, où il y a sept sommets, neuf arêtes et trois faces. \\
+Le sommet $v_1$ est représenté par l'ensemble des brins $\{1,6,9\}$, l'arête $e_1$ par $\{4,9\}$ et la face $f_2$ par $\{1,2,3,4\}$.
+
+\textbf{Dimension 3} : 
+
+\begin{figure}[h!]
+   \begin{minipage}[b]{0.40\linewidth}
+      \centering \includegraphics[scale=0.5]{Images_Fichiers/3CC.eps}
+      \legend{3-Carte Combinatoire}
+      \label{3CC}
+   \end{minipage}\hfill
+   \begin{minipage}[b]{0.48\linewidth}   
+     \centering \includegraphics[scale=0.5]{Images_Fichiers/3CCGraphe.eps}
+	 \legend{Graphe correspondant}
+	 \label{3CCGraphe}
+   \end{minipage}
+\end{figure}
+
+$\beta_1$, $\beta_2$ fonctionnent comme auparavant et $\beta_3$ lie les brins comme indiqué en bleu sur la figure de gauche, c'est-à-dire les brins des faces qui doivent être "cousus" ensemble. On a ici deux volumes, représentés par l'ensemble des brins qui le composent.
+
+
+
+\section[Définition]{\uline{Définition}}
+
+\defibox{Une $n$-carte combinatoire est un $(n+1)$-uplet $(D, \beta_1,\cdots, \beta_n)$ où :
+
+\begin{enumerate}
+
+
+\item $D$ est un ensemble fini : les brins.
+\item $\beta_1$ est une permutation partielle sur $D$. On note $\beta_0=\beta_1^{-1}$. 
+\item Pour tout $i\in \{2,\cdots,n\},\ \beta_i$ est une involution partielle.
+\item Pour tout $i\in \{0,\cdots,n-2\}$ et pour tout $j\in \{3,\cdots,n\}$, si $i+2\leq j$, alors $\beta_i \circ \beta_j$ est une involution partielle.
+\end{enumerate}}
+
+\underline{Explication} : Que signifie partielle ? 
+
+Une permutation partielle sur $D$ est une application dont tous les éléments sont soit envoyés sur $\emptyset$ soit dans $D$ et dans ce cas, chaque image est distincte.
+
+On a vu précédemment que les brins appartenant à un bord n'ont pas d'image par certains des $\beta_i$, d'où la nécessité des permutations partielles. Dans le cas d'une figure sans bord, on peut supprimer ce mot de la définition. 
+
+Les fonctions $\beta_i$, comme vu précédemment, indiquent les relations de dimension $i$ entre les différents brins.
+Une 0-CC sera donc un ensemble de sommets isolés, une 1-CC sera une coube polygonale orientée, 
+une 2-CC un regroupement de surfaces orientées, et une 3-CC sera un regroupement de volumes orientés.
+
+La dernière condition n'est utilisée qu'en dimension supérieure ou égale à 3. Elle découle du fait que les objets de dimension supérieure ou égale à 2 sont bien reliés correctement, par exemple pour un solide que deux faces identiques sont bien liées et que l'orientation est respectée. 
+
+Une définition dont nous aurons besoin plus tard : 
+
+\defin{L'inverse $M^{-1}$ d'une $n$-CC $M=(D, \beta_1,\cdots, \beta_n)$ est définie par $$M^{-1} = (D, \beta_1^{-1},\beta_2,\cdots, \beta_n)$$}
+Il s'agit de la même $n$-CC, mais dont l'orientation aura été inversée.
+
+\section[Orbites - Cellules]{\uline{Orbites - Cellules}}
+
+\defibox{Soit $I$ un sous-ensemble de $\{1,\cdots,n\}$, et $d\in D$ un brin.\\
+On note $\beta_I = \{\beta_i,\ i\in I\}$. On appelle \textbf{\underline{orbite de $\bm{d}$}} dans $\beta_I$ l'ensemble noté $\langle \beta_I \rangle (d)$ tel que 
+$$\langle \beta_I \rangle (d)=\{d'\in D \text{ tel qu'il existe } \alpha_1\circ \cdots \circ \alpha_k\text{ avec } \alpha_j=\beta_j\text{ ou }\beta_j^{-1}\text{ et }j\in I$$ $$
+\text{ tel que } \alpha_1 \circ \cdots \circ \alpha_k(d)= d'  \}.$$ }
+
+Intuitivement, il s'agit de tous les brins pouvant être atteints à partir de $d$ en utilisant les fonctions présentes dans $\beta_I$ ou leur inverse.
+
+\defins{\ \\
+$\bullet$ Une $n$-CC $M=(D, \beta_1,\cdots,\beta_n)$ est dite \textbf{\underline{connexe}} si pour $d\in D, $ $$\ \langle (\beta_1,\cdots,\beta_n) \rangle (d) = D.$$
+$\bullet$ Pour $d\in D$, l'ensemble $\ \langle (\beta_1,\cdots,\beta_n) \rangle (d)$ est la \underline{\textbf{composante connexe contenant }$\bm{d}$}.
+}
+
+\defibox{Soit $d \in D$, une \underline{$\bm{i}$\textbf{-cellule}} contenant $d$, notée $c_i(d)$ est :
+\begin{itemize}
+\item si $i\neq 0$, $c_i(d)=\langle (\beta_1\cdots\beta_{i-1},\beta_{i+1},\cdots\beta_n) \rangle (d)$
+\item si $i=0$, $c_0(d)=\langle \{\beta_j \circ \beta_k | 1\leq j<k\leq n\} \rangle (d)$
+\end{itemize} }
+
+Intuitivement, une $i$-cellule contenant $d$ est l'objet de dimension $i$ contenant le brin $d$. Une 0-cellule est donc un point, une 1-cellule une arête, une 2-cellule une face et une 3-cellule un volume.
+
+
+Il suffit donc de regarder les orbites de différentes fonctions pour déterminer les composantes de la figure de départ. Un brin appartient en même temps à un sommet, une arête, une face, un volume...
+On voit que cela ne pose pas de problèmes de travailler en dimension supérieure à 3 car ces définitions sont valables en toute dimension. Il suffit donc de rajouter une fonction $\beta_i$ pour augmenter la dimension de 1.
+
+\defins{\ \\
+$\bullet$ Deux cellules sont dites \textbf{\underline{incidentes}} si elle possèdent au moins un brin en commun.\\
+$\bullet$ Deux $i$-cellules $C$ et $C'$ sont dites \textbf{\underline{adjacentes}} ssi il existe deux brins $d$ de $C$ et $d'$ de $C'$ tels que : 
+\begin{itemize}
+\item si $i>0$ : $d'=\beta_i(d)$ ou $d=\beta_i(d')$
+\item si $i=0$ : il existe $k\in\{0,\cdots,n\}$ tel que $d'=\beta_k(d)$.
+\end{itemize}}
+
+\section[Opérations de base]{\uline{Opérations de base}}
+
+Dans toute la suite, $M=(D,\beta_1,\cdots,\beta_n)$ représente une $n$-CC avec $D$ l'ensemble des brins.
+
+\subsection{Brin isolé}
+
+\defibox{Un brin $d$ est dit isolé si $\forall j\in\{1,\cdots,n\}, \ \beta_j(d)=\emptyset$.}
+
+On peut créer une $n$-CC notée $M_{+d}$ en rajoutant un brin isolé $d$ comme suit : 
+$$M_{+d} = (D\cup\{d\}, \beta'_1,\cdots....,\beta'_n)\text{, avec }{\beta'_i}_{|D}= \beta_i et \beta'_i(d)=\emptyset \ \forall i\in{1,\cdots,n}.$$ 
+
+On peut créer une $n$-CC notée $M_{-d}$ en enlevant un brin isolé $d$ comme suit : 
+$$M_{-d} = (D-\{d\}, \beta'_1,\cdots....,\beta'_n)\text{, avec }\beta'_i = {\beta'_i}_{|D-\{d\}} \ \forall i\in{1,\cdots,n}.$$
+
+\subsection{Fusion - séparation}
+
+Soit $M'=(D',\beta'_1,\cdots....,\beta'_n) $ une deuxième $n$-CC. Alors on peut fusionner $M$ et $M'$ en une $n$-CC $M''=(D'',\beta''_1,\cdots....,\beta''_n) $ telle que : 
+\begin{itemize}
+\item $D''=D\cup D'$.
+\item $\forall i \in{1,\cdots,n}, {\beta''_i}_{|D}=\beta_i$ et ${\beta''_i}_{|D'}=\beta'_i$.
+\end{itemize}
+
+On peut également séparer une $n$-CC en deux selon les composantes connexes : 
+
+Soit $D'\subset D'$ tel que $\forall d \in D', \ \beta_i(d)\in D'$ (les brins de $D'$ doivent être l'ensemble d'une ou plusieurs composante(s) connexe(s)).
+Alors on peut séparer $M$ en $M'=(D',{\beta_1}_{|D'},\cdots....,{\beta_n}_{|D'})$ et $M''=(D-D',{\beta_1}_{|D-D'},\cdots....,{\beta_n}_{|D-D'})$.
+
+\subsection{Un peu de couture...}
+
+On va voir dans cette section comment "coudre" des $i$-cellules ensemble. La première chose à remarquer est que ces cellules doivent être isomorphes. En effet, pour un volume on ne va par exemple pas essayer de coudre ensemble une face triangulaire et une face carrée. 
+
+Pour $i\in \{0,\cdots,n\}$, on note $O_d=\langle \beta_1,\cdots,\beta_{i-2},\beta_{i+2},\cdots, \beta_{n}\rangle(d)$. 
+
+\defibox{Soient deux brins $d$ et $d'$ de $D$. $d$ est \textbf{\underline{$i$-cousible à $d'$}} si $\beta_i(d)=\emptyset$ et $\beta_i^{-1}(d')=\emptyset$ et s'il existe un isomorphisme $f$ entre $O_d$ et l'inverse de $O_{d'}$ tel que $f(d)=d'$.}
+
+La première condition implique que les deux brins sont sans $i$-bords (dans le cas de $\beta_1$, qu'un brin n'a pas d'image, et un n'a pas d'antécédent).
+La deuxième condition vérifie que les deux $i$-cellules sont bien isomorphes et assure que la condition 4 de la définition d'une $n$-CC reste bien vérifiée.  
+
+On peut maintenant coudre deux parties d'une $n$-CC comme suit (on ne s'intéressera qu'aux coutures de dimension supérieure à 2, pour 1, c'est similaire) : 
+
+Soient $d$ et $d'$ deux brins $i$-cousibles par un isomorphisme $f$, pour $i\in \{2,\cdots,n\}$. Alors en cousant ces deux brins, on obtient la $n$-CC $M'=(D, \beta_1,\cdots,\beta_{i-1},\beta'_i,\beta_{i+1},\cdots, \beta_n)$ avec 
+$$\beta'_i(e) = \left\{\begin{array}{ll}
+f(e) & \text{si }e\in O_d\\
+f^{-1}(e)& \text{si }e\in O_d' \text{ et }O_d \neq O_{d'}\\
+\beta_i(e) & \text{sinon.}\\
+\end{array}\right.$$
+
+\subsection{Pour en découdre...}
+
+Pour finir, on peut découdre un brin. Cette fois-ci, il n'y a pas de condition à vérifier, on peut toujours le faire si ce brin n'est pas déjà $i$-libre :
+Soit $i\in \{2,\cdots,n\}$ et $d$ un brin non $i$-libre. Alors en décousant ce brin, on obtient la $n$-CC $M'=(D, \beta_1,\cdots,\beta_{i-1},\beta'_i,\beta_{i+1},\cdots, \beta_n)$ avec 
+$$\beta'_i(e) = \left\{\begin{array}{ll}
+\emptyset & \text{si }e\in \langle \beta_1,\cdots,\beta_{i-2},\beta_i,\beta_{i+2},\cdots, \beta_{n}\rangle(d)\\
+\beta_i(e) & \text{sinon.}\\
+\end{array}\right.$$
+
+Cela consiste à envoyer tout brin de $\langle \beta_1,\cdots,\beta_{i-2},\beta_i,\beta_{i+2},\cdots, \beta_{n}\rangle(d)$ sur $\emptyset$. Donc tous les brins de cette orbite seront décousus.\\
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.4]{Images_Fichiers/3CC.eps}
+\end{figure}
+
+En 3D, si le cube et la pyramide sont deux cartes combinatoires, alors la couture de ces deux cartes consistera à rajouter la fonction $\beta_3$ pour lier les faces. Une fois cousues, ces faces peuvent être décousues pour redonner les deux cartes combinatoires de départ. Chacune des deux faces aura un 3-bord.
+
+\chapter[Implémentation]{\uline{Implémentation}}
+
+Nous avons implémenté la structure d'une $n$-CCG en C++, ainsi que quelques opérations de base.\\
+Comme vu dans la partie précédente, l'élément de base d'une carte combinatoire est la demi-arête.
+
+\section{Demi-arête} 
+\subsection{Explication}
+
+La structure de la demi-arête contient un entier $Identifiant$,
+un attribut qui peut porter des informations sur la géométrie, ou d'autres choses suivant l'application, par exemple, l'attribut pourrait représenter les coordonnées des sommets quand la carte est une surface géométrique, et c'est ce qui a été considéré dans le code. Mais il pourrait aussi comporter toute sorte d'autres information, comme la couleur de la cellule, son nom...
+
+\gs{Remarque} :
+
+Si on veut associer des informations sur des $i$-cellules, et puisque les $i$-cellules ne sont pas explicitement décrites, on associe l'information aux demi-arêtes appartenant à la cellule. \\
+En dimension $n$, la structure de la demi-arête contient aussi une liste $Alphas$ de $n+1$ pointeurs pour représenter les involutions $\alpha_i$.\\
+Mais nous n'avons considéré que la dimension $2$, et donc notre liste $Alphas$ contient exactement trois pointeurs.
+
+De plus, la structure contient des marqueurs pour marquer la demi-arête, 
+Ces marqueurs sont utilisés dans plusieurs algorithmes, nous verrons ça tout à l'heure.
+En général, 8 marqueurs suffisent mais on peut modifier cela .
+
+\gs{Remarque} :
+
+Nous devions définir l'opérateur  $"<"$ entre deux demi-arêtes puisque la fonction $std::set::insert$ insère dans un élément n'existant pas déjà, donc on doit comparer deux demi-arêtes pour insérer de nouvelles demi-arêtes dans l'ensemble des demi-arêtes de la carte.
+
+\subsection{Structure demi-arête}
+La dimension est $2$ :
+
+\begin{lstlisting} 
+struct Dart
+{
+	int Attribut[2];
+    int Id;
+    Dart* Alphas[3];//n+1
+    bool marks[8];
+};
+Dart dart_without_info()
+{
+	Dart d;
+	for (int i=0;i<8;i++)
+    	d.marks[i]=false;
+	return d;
+}
+
+bool operator<(Dart d1,Dart d2)
+{
+	if (d1.Id<d2.Id)
+    	return true;  
+    else
+        return false ;
+}
+\end{lstlisting}
+
+\section{2-$n$-CCG :}
+La structure $n$-CCG est composée d'un ensemble de demi-arêtes ("darts" en anglais), et d'un ensemble d'entiers Freemarks qui gère les marqueurs.
+
+\subsection{Structure nGmap} 
+
+\begin{lstlisting} 
+struct nGmap
+{
+	std::set<Dart> Darts;
+	std::set<int> Freemarks;
+};
+nGmap* createnGmap() 
+{
+	nGmap* gm=new nGmap();
+	for(int i=0;i<8;i++)
+    	gm->Freemarks.insert(i);
+	return gm;
+}
+
+\end{lstlisting}
+\newpage
+\gs{Exemple} :
+
+On crée une $n$-CCG composée de $14$ demi-arêtes, on donne a chaque demi-arête un Id, et on établit les liens avec les autres demi-arêtes par $\alpha_i$ . 
+
+\begin{lstlisting} 
+nGmap* gm=createnGmap();
+Dart d1=dart_without_info(); Dart d2=dart_without_info();
+Dart d3=dart_without_info(); Dart d4=dart_without_info();
+Dart d5=dart_without_info(); Dart d6=dart_without_info();
+Dart d7=dart_without_info(); Dart d8=dart_without_info();
+Dart d9=dart_without_info(); Dart d10=dart_without_info();
+Dart d11=dart_without_info(); Dart d12=dart_without_info();
+Dart d13=dart_without_info(); Dart d14=dart_without_info();
+
+d1.Id=1;
+d1.Attribut[0]=5;d1.Attribut[1]=5;
+d1.Alphas[0]=&d2; d1.Alphas[1]=&d8;	d1.Alphas[2]=&d9;
+
+d2.Id=2;
+d2.Alphas[0]=&d1; d2.Alphas[1]=&d3; d2.Alphas[2]=&d10;
+	
+d3.Id=3;
+d3.Alphas[0]=&d4; d3.Alphas[1]=&d2; d3.Alphas[2]=&d3;
+	
+d4.Id=4;
+d4.Alphas[0]=&d3; d4.Alphas[1]=&d5; d4.Alphas[2]=&d4;
+	
+d5.Id=5;
+d5.Alphas[0]=&d6; d5.Alphas[1]=&d4; d5.Alphas[2]=&d5;
+	
+d6.Id=6;
+d6.Alphas[0]=&d5; d6.Alphas[1]=&d7; d6.Alphas[2]=&d6;
+	
+d7.Id=7;
+d7.Alphas[0]=&d8; d7.Alphas[1]=&d6; d7.Alphas[2]=&d7;
+	
+d8.Id=8;
+d8.Alphas[0]=&d7; d8.Alphas[1]=&d1; d8.Alphas[2]=&d8;
+
+d9.Id=9;
+d9.Alphas[0]=&d10; d9.Alphas[1]=&d14; d9.Alphas[2]=&d1;
+
+d10.Id=10;
+d10.Alphas[0]=&d9; d10.Alphas[1]=&d11; d10.Alphas[2]=&d2;
+
+d11.Id=11;
+d11.Alphas[0]=&d12; d11.Alphas[1]=&d10; d11.Alphas[2]=&d11;
+
+d12.Id=12;
+d12.Alphas[0]=&d11; d12.Alphas[1]=&d13; d12.Alphas[2]=&d12;
+
+d13.Id=13;
+d13.Alphas[0]=&d14; d13.Alphas[1]=&d12; d13.Alphas[2]=&d13;
+
+d14.Id=14;
+d14.Alphas[0]=&d13; d14.Alphas[1]=&d9; d14.Alphas[2]=&d14;
+
+Dart mydarts[]= {d1,d2,d3,d4,d5,d6,d7,d8,d9,d10,d11,d12,d13,d14};
+gm->Darts.insert(mydarts,mydarts+14);
+
+\end{lstlisting}
+
+\gs{Résultat} :
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/1.eps}
+\end{figure}
+
+Ces deux codes servent à réserver et libérer des marqueurs en les supprimant/ajoutant à l'ensemble freemarks
+\begin{lstlisting} 
+int reservemarknGmap(nGmap* gm)  
+{
+   if ((gm->Freemarks).empty()==1)
+   {
+       return -1;
+   }
+   else
+   {
+       std::set<int>::iterator it;
+       it=(gm->Freemarks).begin();
+       gm->Freemarks.erase(it);
+       return *it;
+   }
+
+}
+
+void freemarknGmap(nGmap *gm,int i) 
+{
+    auto result_1=gm->Freemarks.insert(i);
+    assert(result_1.first != gm->Freemarks.end());//it's a valid iterator
+    assert(*result_1.first == i);
+    if (result_1.second)
+    	std::cout << "insert done \n";
+    else
+    	std::cout << "insert failed \n";
+}
+
+\end{lstlisting}
+
+Ces trois codes servent à marquer, à faire un marqueur à une demi-arête, et à tester si une demi-arête est marqué on non.
+\begin{lstlisting} 
+
+bool ismarkednGmap(Dart d,int i)
+{
+    return d.marks[i];
+}
+
+
+Dart marknGmap(Dart d,int i)
+{
+    d.marks[i]=true;
+    return d;
+}
+
+Dart unmarknGmap(Dart d,int i)
+{
+    d.marks[i]=false;
+    return d;
+}
+\end{lstlisting}
+
+\gs{Exemple} :
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/2.eps}
+\end{figure}
+
+\section{Itérateurs :}
+
+Comme nous avons vu précédemment, les $i$-cellules sont définies grâce à la notion d'orbite. D'où, l'importance de savoir itérer sur toutes les demi-arêtes appartenant à une certaine orbite. Ce code-là itère seulement. Nous pourrions ajouter des actions à faire pour chaque demi-arête sur laquelle on itère.\\
+On peut par exemple les afficher comme fait dans l'exemple suivant, ou par exemple, donner aux demi-arêtes qui composent un sommet, l'attribut qui serait les coordonnées de ce sommet.
+
+\begin{lstlisting} 
+void iterateur(nGmap* gm,Dart d,std::set<int> seq)
+{
+    int ma=reservemarknGmap(gm);
+    std::stack<Dart> P; 
+    P.push(d);
+    marknGmap(d,ma);
+    while(!P.empty())
+	{
+	    Dart cur=P.top();
+	    //cout<<cur.Id;
+	    P.pop();
+	    for(std::set<int>::iterator it=seq.begin() ;
+	        it!=seq.end();++it)
+   	    { // *it c'est les elements de seq
+   	        if (ismarkednGmap(*(cur.Alphas[*it]),ma)==false)
+   	        {
+   	           *(cur.Alphas[*it])=marknGmap(*(cur.Alphas[*it]),ma);
+   	           Dart d0=*(cur.Alphas[*it]);
+   	           P.push(d0);
+   	        }
+   	    }
+   	}
+	for(std::set<Dart>::iterator it=gm->Darts.begin() ; 
+	    it!=gm->Darts.end();++it)
+        unmarknGmap(*it,ma);
+    freenGmap(gm,ma);
+}
+
+\end{lstlisting}
+
+\gs{Exemples} : 
+\begin{lstlisting}
+std::set<int> seq;
+seq.insert(1);seq.insert(0);
+iterateur(gm,d1,seq);
+std::set<int> seq2;
+seq2.insert(1);seq2.insert(2);
+iterateur(gm,d1,seq2);
+std::set<int> seq3;
+seq3.insert(0);seq3.insert(2);
+iterateur(gm,d1,seq3);
+\end{lstlisting}
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/3.eps}
+\end{figure}
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/4.eps}
+\end{figure}
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/5.eps}
+\end{figure}
+
+
+\section{Fonction qui teste si une demi-arête est $i$-libre}
+\begin{lstlisting} 
+
+bool isfreenGmap(Dart d,int i)
+{
+    Dart* pd0=d.Alphas[i];
+    Dart d0=*pd0;
+    if (d0.Id==d.Id)
+        return true;
+    else
+        return false;
+}
+\end{lstlisting}
+
+\gs{Exemple} :
+\begin{lstlisting}
+cout<<isfreenGmap(d4,2);
+cout<<isfreenGmap(d2,2);
+cout<<isfreenGmap(d7,1);
+\end{lstlisting}
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/6.eps}
+\end{figure}
+
+\section{Ajout et suppression d'une demi-arête isolée et test de l'isolement d'une demi-arête}
+
+\gs{Remarque }: 
+Pour ajouter une demi-arête isolée, il faut générer son identifiant, pour cela nous choisirons le maximum des identifiants des demi-arêtes existantes plus 1.
+
+\begin{lstlisting} 
+bool isIsolated(Dart d)
+{
+    if (isfreenGmap(d,0)==true && isfreenGmap(d,1)==true && isfreenGmap(d,2)==true);
+        return true;
+    else
+        return false;
+}
+
+int MaxId(nGmap* gm)
+{
+std::vector<int> ids;
+for (std::set<Dart>::iterator it=gm->Darts.begin(); it!=gm->Darts.end() ;
+	 ++it)
+    ids.push_back((*it).Id);
+std::vector<int>::iterator it=std::max_element(ids.begin(),ids.end());
+return *it;
+}
+
+Dart createDartnGmap(nGmap* gm)  //create a new isolated dart
+{
+int id=MaxId(gm)+1;
+Dart d=dart_without_info();
+d.Id=id;
+for (int i=0;i<3;i++)
+    d.Alphas[i]=&d;
+gm->Darts.insert(d);
+return d;
+}
+
+void removeIsolatedDart($n$-CCG *gm,Dart d)
+{
+    gm->Darts.erase(d);
+}
+
+\end{lstlisting}
+
+\gs{Exemple} :
+\begin{lstlisting}
+cout<<"\n max id des demi-arêtes \n"<<MaxId(gm);
+Dart de=createDartNGMap(gm);
+cout<<"\n Id de la nouvelle demi-arête \n"<<de.Id;
+cout<<" \n Est ce que la nouvelle demi-arête est isolée 
+	   avant de le supprimer ? \n"<<isIsolated(de);
+removeIsolatedDart(gm,de);
+\end{lstlisting}
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.5]{Images_Fichiers/7.eps}
+\end{figure}
+
+\chapter[Conclusion]{\uline{Conclusion}}
+
+\section[Diagramme de Gantt]{\uline{Diagramme de Gantt}}
+\shorthandoff{:!}
+\begin{ganttchart}{1}{10}
+\gantttitle{Mai 2017 }{10} \\
+\gantttitlelist{22,...,31}{1} \\
+\ganttgroup{Groupe Cartes Combinatoires}{1}{10} \\
+\ganttbar{Planning et Biblio}{1}{10}\\
+\ganttlinkedbar{Apprentissage de la théorie}{2}{4} \ganttnewline
+\ganttlinkedbar{Codes}{5}{7} \ganttnewline
+\ganttmilestone{Rédaction du rapport et des slides}{8}{9} \ganttnewline
+\ganttbar{Présentation du projet}{10}{10}
+\ganttlink{elem2}{elem3}
+\ganttlink{elem3}{elem4}
+\end{ganttchart}
+\shorthandon{:!}
+
+\section[Travail de groupe]{\uline{Travail de groupe}}
+
+Nous avons passé beaucoup de temps tout d'abord à comprendre la théorie sur les cartes combinatoires. Pendant toutes les séances de projet, nous avons essayé de lire les 600 pages des deux livres qui constituaient la base principale de notre travail, mais aussi la documentation CGAL, et ensuite nous avons essayé d'utiliser cette bibliothèque pour voir comment elle marchait. \\
+Malheureusement, nous n'avons pas réussi à compiler le moindre projet avec, et il était trop tard pour demande de l'aide. Alors nous avons décidé d'implémenter notre propre classe. 
+
+Au niveau de la répartition du travail, Jonathan a surtout travaillé sur la partie théorique, et sur la rédaction en Latex, et Chifaa plutôt sur la partie code.\\
+Comme nous n'étions que deux, il était assez facile de rester en contact par téléphone (plutôt que par Git), et nous nous voyions régulièrement sur le campus pour faire le point dans nos avancements respectifs, et se donner des conseils mutuellement (sur la rédaction et la programmation par exemple).
+
+Nous ne sommes pas arrivés aussi loin que nous aurions aimé en programmation, mais cela a demandé un grand temps de démarrage, le temps de reprendre en main la syntaxe C++, ainsi que pour comprendre les différents algorithmes et la façon de les implémenter. Nous aurions voulu faire une sortie graphique, mais avions finalement manqué de temps.
+
+Ce travail a toutefois été très intéressant, aussi bien parcequ'il s'agit d'un projet assez complet, mais aussi le sujet en lui-même s'est révélé passionnant. Le présenter devant nos camarades et devant les professeurs qui nous ont dit eux-mêmes qu'ils ne connaissaient pas ce domaine et voulaient savoir ce que c'était, a constitué un challenge pour nous. 
+Nous espérons l'avoir relevé avec succès !
+
+
+
+\bibliographystyle{abbrv}
+\nocite{*}
+\bibliography{biblio}
+
+
+
+\end{document}
